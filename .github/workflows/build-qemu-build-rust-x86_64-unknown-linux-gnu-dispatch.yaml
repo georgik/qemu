@@ -49,6 +49,10 @@ jobs:
       - name: Setup Ninja
         if: ${{ matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest' || matrix.os == 'ubuntu-18.04' || matrix.os == 'windows-latest' }}
         uses: seanmiddleditch/gha-setup-ninja@master
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get libgcrypt20-dev
       - name: Prepare build
         run: |
           ./configure --target-list=xtensa-softmmu \
